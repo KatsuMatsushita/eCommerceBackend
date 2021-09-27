@@ -7,12 +7,14 @@ const ProductTag = require('./ProductTag');
 // These are association methods to be executed on the models
 // Products belongsTo Category
 Product.belongsTo(Category, {
-  foreignKey: "category_id"
+  foreignKey: "category_id",
+  targetKey: "id"
 });
 
 // Categories have many Products
 Category.hasMany(Product, {
-  foreignKey: "product_id",
+  foreignKey: "category_id",
+  sourceKey: "id"
 })
 // Products belongToMany Tags (through ProductTag)
 Product.belongsToMany(Tag, {
