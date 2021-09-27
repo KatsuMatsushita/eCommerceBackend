@@ -6,7 +6,7 @@ const ProductTag = require('./ProductTag');
 
 // These are association methods to be executed on the models
 // Products belongsTo Category
-Product.hasOne(Category, {
+Product.belongsTo(Category, {
   foreignKey: "category_id"
 });
 
@@ -15,14 +15,12 @@ Category.hasMany(Product, {
   foreignKey: "product_id",
 })
 // Products belongToMany Tags (through ProductTag)
-Product.hasMany(Tag, {
-  through: "ProductTag",
-  foreignKey: "id"
+Product.belongsToMany(Tag, {
+  through: ProductTag,
 })
 // Tags belongToMany Products (through ProductTag)
-Tag.hasMany(Product, {
-  through: "ProductTag",
-  foreignKey: "id"
+Tag.belongsToMany(Product, {
+  through: ProductTag,
 })
 module.exports = {
   Product,
